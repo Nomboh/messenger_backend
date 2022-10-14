@@ -1,13 +1,14 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const http = require("http");
 
 dotenv.config();
+
+const dbSetup = require("./database");
 const app = express();
 
-const httpServer = http.createServer(app);
+dbSetup();
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8800;
 
 app.listen(PORT, () => {
   console.log("server is running on port " + PORT);
