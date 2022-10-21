@@ -64,7 +64,7 @@ module.exports.userRegister = (req, res) => {
             },
           });
         } else {
-          fs.copyFile(files.image.filepath, newPath, async err => {
+          fs.copyFile(files.image.filepath, newPath, async (err) => {
             if (!err) {
               const createdUser = await User.create({
                 userName,
@@ -154,7 +154,7 @@ module.exports.userLogin = async (req, res) => {
               id: checkUser._id,
               email: checkUser.email,
               userName: checkUser.userName,
-              image: checkUser.email,
+              image: checkUser.image,
               registerTime: checkUser.createdAt,
             },
             process.env.JWT_SECRET,
